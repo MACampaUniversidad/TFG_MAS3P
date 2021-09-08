@@ -1,0 +1,16 @@
+.title KiCad schematic
+R1 +5V /LDR1_Intensidad LDR01
+R3 +5V /LDR2_Intensidad LDR02
+R5 +5V /LDR3_Intensidad LDR03
+R7 +5V /LDR4_Intensidad LDR04
+MotorTorre1 NC_01 +5V GNDA Motor_Servo
+MotorTorre2 NC_02 +5V GNDA Motor_Servo
+R2 /LDR1_Intensidad GNDA 1k
+R4 /LDR2_Intensidad GNDA 1k
+R6 /LDR3_Intensidad GNDA 1k
+R8 /LDR4_Intensidad GNDA 1k
+R9 GNDA /PanelSolar_VInfo 1k
+SC1 /PanelSolar_VS GNDA Solar_Cell
+R10 /PanelSolar_VS /PanelSolar_VInfo 1k
+V5v1 +5V GNDA VSOURCE
+.end

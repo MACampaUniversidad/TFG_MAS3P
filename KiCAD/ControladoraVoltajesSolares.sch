@@ -1,0 +1,395 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:R_PHOTO R1
+U 1 1 611AF624
+P 4200 2300
+F 0 "R1" H 4270 2346 50  0000 L CNN
+F 1 "LDR" H 4270 2255 50  0000 L CNN
+F 2 "" V 4250 2050 50  0001 L CNN
+F 3 "~" H 4200 2250 50  0001 C CNN
+	1    4200 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_PHOTO R3
+U 1 1 611B003A
+P 4950 2300
+F 0 "R3" H 5020 2346 50  0000 L CNN
+F 1 "LDR" H 5020 2255 50  0000 L CNN
+F 2 "" V 5000 2050 50  0001 L CNN
+F 3 "~" H 4950 2250 50  0001 C CNN
+	1    4950 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_PHOTO R5
+U 1 1 611B0D9A
+P 5650 2300
+F 0 "R5" H 5720 2346 50  0000 L CNN
+F 1 "LDR" H 5720 2255 50  0000 L CNN
+F 2 "" V 5700 2050 50  0001 L CNN
+F 3 "~" H 5650 2250 50  0001 C CNN
+	1    5650 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_PHOTO R7
+U 1 1 611B1217
+P 6200 2300
+F 0 "R7" H 6270 2346 50  0000 L CNN
+F 1 "LDR" H 6270 2255 50  0000 L CNN
+F 2 "" V 6250 2050 50  0001 L CNN
+F 3 "~" H 6200 2250 50  0001 C CNN
+	1    6200 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR01
+U 1 1 611ADC92
+P 3350 4250
+F 0 "#PWR01" H 3350 4000 50  0001 C CNN
+F 1 "GNDA" H 3355 4077 50  0000 C CNN
+F 2 "" H 3350 4250 50  0001 C CNN
+F 3 "" H 3350 4250 50  0001 C CNN
+	1    3350 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor:Motor_Servo MotorTorre1
+U 1 1 611BC76C
+P 4500 3650
+F 0 "MotorTorre1" H 4832 3715 50  0000 L CNN
+F 1 "Motor_Servo" H 4832 3624 50  0000 L CNN
+F 2 "" H 4500 3460 50  0001 C CNN
+F 3 "http://forums.parallax.com/uploads/attachments/46831/74481.png" H 4500 3460 50  0001 C CNN
+	1    4500 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor:Motor_Servo MotorTorre2
+U 1 1 611BEE0E
+P 4500 4000
+F 0 "MotorTorre2" H 4832 4065 50  0000 L CNN
+F 1 "Motor_Servo" H 4832 3974 50  0000 L CNN
+F 2 "" H 4500 3810 50  0001 C CNN
+F 3 "http://forums.parallax.com/uploads/attachments/46831/74481.png" H 4500 3810 50  0001 C CNN
+	1    4500 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 4000 4200 4000
+Connection ~ 3550 4000
+Wire Wire Line
+	4200 3650 3550 3650
+Connection ~ 3550 3650
+Wire Wire Line
+	3550 3650 3550 4000
+Wire Wire Line
+	3350 4100 4200 4100
+Wire Wire Line
+	3350 3300 3350 3750
+Wire Wire Line
+	4200 3750 3350 3750
+Connection ~ 3350 3750
+Wire Wire Line
+	3350 3750 3350 4100
+Wire Wire Line
+	3800 3900 4200 3900
+Wire Wire Line
+	4100 3550 4200 3550
+Wire Wire Line
+	3350 3300 4200 3300
+$Comp
+L Device:R R2
+U 1 1 611C591C
+P 4200 2850
+F 0 "R2" H 4270 2896 50  0000 L CNN
+F 1 "1k" H 4270 2805 50  0000 L CNN
+F 2 "" V 4130 2850 50  0001 C CNN
+F 3 "~" H 4200 2850 50  0001 C CNN
+	1    4200 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 611C5FA0
+P 4950 2850
+F 0 "R4" H 5020 2896 50  0000 L CNN
+F 1 "1k" H 5020 2805 50  0000 L CNN
+F 2 "" V 4880 2850 50  0001 C CNN
+F 3 "~" H 4950 2850 50  0001 C CNN
+	1    4950 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R6
+U 1 1 611C659E
+P 5650 2850
+F 0 "R6" H 5720 2896 50  0000 L CNN
+F 1 "1k" H 5720 2805 50  0000 L CNN
+F 2 "" V 5580 2850 50  0001 C CNN
+F 3 "~" H 5650 2850 50  0001 C CNN
+	1    5650 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R8
+U 1 1 611C6B6B
+P 6200 2850
+F 0 "R8" H 6270 2896 50  0000 L CNN
+F 1 "1k" H 6270 2805 50  0000 L CNN
+F 2 "" V 6130 2850 50  0001 C CNN
+F 3 "~" H 6200 2850 50  0001 C CNN
+	1    6200 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 3200 4000 3200
+Wire Wire Line
+	6050 3200 6050 2150
+Wire Wire Line
+	6050 2150 6200 2150
+Wire Wire Line
+	3550 3200 3550 3650
+Wire Wire Line
+	5450 3200 5450 2150
+Wire Wire Line
+	5450 2150 5650 2150
+Connection ~ 5450 3200
+Wire Wire Line
+	5450 3200 6050 3200
+Wire Wire Line
+	4750 3200 4750 2150
+Wire Wire Line
+	4750 2150 4950 2150
+Connection ~ 4750 3200
+Wire Wire Line
+	4750 3200 5450 3200
+Wire Wire Line
+	4000 3200 4000 2150
+Wire Wire Line
+	4000 2150 4200 2150
+Connection ~ 4000 3200
+Wire Wire Line
+	4000 3200 4750 3200
+Wire Wire Line
+	4200 3300 4200 3000
+Connection ~ 4200 3300
+Wire Wire Line
+	4200 3300 4950 3300
+Wire Wire Line
+	4950 3300 4950 3000
+Connection ~ 4950 3300
+Wire Wire Line
+	4950 3300 5650 3300
+Wire Wire Line
+	5650 3300 5650 3000
+Connection ~ 5650 3300
+Wire Wire Line
+	5650 3300 6200 3300
+Wire Wire Line
+	6200 3300 6200 3000
+Connection ~ 6200 3300
+Wire Wire Line
+	6200 3300 6700 3300
+Wire Wire Line
+	4950 2450 4950 2600
+Wire Wire Line
+	4200 2450 4200 2600
+Wire Wire Line
+	5500 4200 5500 3450
+Wire Wire Line
+	5500 3450 4450 3450
+Wire Wire Line
+	4450 3450 4450 2600
+Wire Wire Line
+	4450 2600 4200 2600
+Connection ~ 4200 2600
+Wire Wire Line
+	4200 2600 4200 2700
+Wire Wire Line
+	5700 4200 5700 3400
+Wire Wire Line
+	5700 3400 5200 3400
+Wire Wire Line
+	5200 3400 5200 2600
+Wire Wire Line
+	5200 2600 4950 2600
+Connection ~ 4950 2600
+Wire Wire Line
+	4950 2600 4950 2700
+Wire Wire Line
+	5650 2450 5650 2600
+Wire Wire Line
+	5900 4200 5900 2600
+Wire Wire Line
+	5900 2600 5650 2600
+Connection ~ 5650 2600
+Wire Wire Line
+	5650 2600 5650 2700
+Wire Wire Line
+	6200 2450 6200 2600
+Wire Wire Line
+	6200 2600 6400 2600
+Wire Wire Line
+	6400 2600 6400 3400
+Connection ~ 6200 2600
+Wire Wire Line
+	6200 2600 6200 2700
+$Comp
+L Device:R R9
+U 1 1 611D0DB9
+P 6900 2850
+F 0 "R9" H 6970 2896 50  0000 L CNN
+F 1 "1k" H 6970 2805 50  0000 L CNN
+F 2 "" V 6830 2850 50  0001 C CNN
+F 3 "~" H 6900 2850 50  0001 C CNN
+	1    6900 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 2600 6800 2600
+Wire Wire Line
+	6900 2600 6900 2700
+Wire Wire Line
+	6700 2600 6700 3300
+Wire Wire Line
+	7500 2600 7300 2600
+Wire Wire Line
+	7300 2600 7300 2700
+Wire Wire Line
+	7500 2600 7500 4200
+Wire Wire Line
+	7300 3000 7300 3100
+Wire Wire Line
+	6900 3100 6900 3000
+Text HLabel 6100 4200 3    50   Input ~ 0
+LDR4_Intensidad
+Text HLabel 5900 4200 3    50   Input ~ 0
+LDR3_Intensidad
+Text HLabel 5700 4200 3    50   Input ~ 0
+LDR2_Intensidad
+Text HLabel 5500 4200 3    50   Input ~ 0
+LDR1_Intensidad
+Text HLabel 7500 4200 3    50   Input ~ 0
+PanelSolar_VS
+Text HLabel 6300 4200 3    50   Input ~ 0
+PanelSolar_VInfo
+$Comp
+L Device:Solar_Cell SC1
+U 1 1 611F7DDE
+P 7100 2350
+F 0 "SC1" H 7208 2446 50  0000 L CNN
+F 1 "Solar_Cell" H 7208 2355 50  0000 L CNN
+F 2 "" V 7100 2410 50  0001 C CNN
+F 3 "~" V 7100 2410 50  0001 C CNN
+	1    7100 2350
+	1    0    0    -1  
+$EndComp
+Connection ~ 6800 2600
+Wire Wire Line
+	6800 2600 6900 2600
+Wire Wire Line
+	7100 2450 6800 2450
+Wire Wire Line
+	6800 2450 6800 2600
+Wire Wire Line
+	7500 2600 7500 2150
+Wire Wire Line
+	7500 2150 7100 2150
+Connection ~ 7500 2600
+Text HLabel 5050 4200 3    50   Input ~ 0
+PWM_MotorServo2
+Text HLabel 4850 4200 3    50   Input ~ 0
+PWM_MotorServo1
+Wire Wire Line
+	6400 3400 6100 3400
+Wire Wire Line
+	6100 3400 6100 4200
+Wire Wire Line
+	4850 4200 4100 4200
+Wire Wire Line
+	4100 4200 4100 3550
+Wire Wire Line
+	5050 4200 5050 4150
+Wire Wire Line
+	5050 4150 3800 4150
+Wire Wire Line
+	3800 3900 3800 4150
+Wire Wire Line
+	3550 4000 3550 4250
+$Comp
+L power:+5V #PWR02
+U 1 1 611AD5FD
+P 3550 4250
+F 0 "#PWR02" H 3550 4100 50  0001 C CNN
+F 1 "+5V" H 3565 4423 50  0000 C CNN
+F 2 "" H 3550 4250 50  0001 C CNN
+F 3 "" H 3550 4250 50  0001 C CNN
+	1    3550 4250
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R10
+U 1 1 611D175E
+P 7300 2850
+F 0 "R10" H 7370 2896 50  0000 L CNN
+F 1 "1k" H 7370 2805 50  0000 L CNN
+F 2 "" V 7230 2850 50  0001 C CNN
+F 3 "~" H 7300 2850 50  0001 C CNN
+	1    7300 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 4350 3550 4250
+Connection ~ 3550 4250
+Wire Wire Line
+	3350 4100 3350 4250
+Connection ~ 3350 4100
+$Comp
+L Transistor_BJT:2N2219 Q1
+U 1 1 613365ED
+P 6700 3700
+F 0 "Q1" H 6890 3746 50  0000 L CNN
+F 1 "2N2219" H 6890 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-39-3" H 6900 3625 50  0001 L CIN
+F 3 "http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF" H 6700 3700 50  0001 L CNN
+	1    6700 3700
+	1    0    0    -1  
+$EndComp
+Text Notes 7250 3750 0    50   ~ 0
+Transistor BJT\nBNP actuando\ncomo  interruptor
+Wire Wire Line
+	6900 3100 7100 3100
+Wire Wire Line
+	6800 3900 6300 3900
+Wire Wire Line
+	6300 3900 6300 4200
+Wire Wire Line
+	5200 4200 5200 3700
+Wire Wire Line
+	5200 3700 6500 3700
+Wire Wire Line
+	7100 3100 7100 3500
+Wire Wire Line
+	7100 3500 6800 3500
+Connection ~ 7100 3100
+Wire Wire Line
+	7100 3100 7300 3100
+Text HLabel 5200 4200 3    50   Input ~ 0
+Control_VinfoPanelSolar
+$EndSCHEMATC
