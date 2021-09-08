@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CloudMessageBrokerMicroService</name>
+    </assembly>
+    <members>
+        <member name="T:CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController">
+            <summary>
+            Gestiona el estado general del sistema  -patron Singleton
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController.lazyInstance">
+            <summary>
+            Singleton en modo "lazy"
+            </summary>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController.NotifyQueuedMessage(CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController.EDirection)">
+            <summary>
+            Notifica de la llegada a una de las colas de un mensaje incrementando la 
+            estadística correspondiente a la cola de dirección especificada.
+            </summary>
+            <param name="direction"></param>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController.NotifyProcessedMessage(CloudMessageBrokerMicroService.Business.Controllers.BrokerStatusController.EDirection)">
+            <summary>
+            Actualiza el estado general del broker. Automáticamente retira el valor en
+            las estadísticas de colas de envíos manteniendo la homogeneidad entre lo procesado 
+            y lo enviado
+            </summary>
+            <param name="direction"></param>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.lazyInstance">
+            <summary>
+            Singleton en modo "lazy" con seguridad frente a concurrencia 
+            por exclusion mutua.
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.clientInputStackLP">
+            <summary>
+            Pila que almacena los mensajes que entran 
+            desde los clientes del API 
+            BAJA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.clientOutPutStackLP">
+            <summary>
+            Pila que almacena los mensajes que deben ser
+            enviados a los clientes del API
+            BAJA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.serverInputPutStackLP">
+            <summary>
+            Pila que almacena los mensajes entrantes desde el servidor MQTT
+            BAJA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.serverOutPutStackLP">
+            <summary>
+            Pila que almacena los mensajes salientes hacia el servidor MQTT
+            BAJA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.clientInputStackHP">
+            <summary>
+            Pila que almacena los mensajes que entran 
+            desde los clientes del API 
+            ALTA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.clientOutPutStackHP">
+            <summary>
+            Pila que almacena los mensajes que deben ser
+            enviados a los clientes del API
+            ALTA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.serverInputPutStackHP">
+            <summary>
+            Pila que almacena los mensajes entrantes desde el servidor MQTT 
+            ALTA PRIORIDAD
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.serverOutPutStackHP">
+            <summary>
+            Pila que almacena los mensajes salientes hacia el servidor MQTT
+            ALTA PRIORIDAD
+            </summary>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.GetStatus">
+            <summary>
+             Recupera el estado general del broker de mensajes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.CleanStatus">
+            <summary>
+             Vacía el estado general del broker de mensajes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.MessageBrokerController.GetMessagesFromServer(System.Boolean,CloudMessageBrokerMicroService.DataContracts.EPriority)">
+            <summary>
+            Recupera el siguiente mensaje disponible o todos los mensajes si all=true
+            </summary>
+            <param name="all">retorna todos los mensajes si el valor es verdadero</param>
+            <param name="priority"> si Alta retorna de la cola de alta prioridad
+            Low de la cola de baja
+            Any busca primero en la cola de alta, si no hay mensajes, recupera de la cola de baja.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.Business.Controllers.MQTTController">
+            <summary>
+            Gestiona la comunicación con el servidor MQTT - patron singleton
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.Controllers.MQTTController.lazyInstance">
+            <summary>
+            Singleton en modo "lazy"
+            </summary>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Business.Controllers.MQTTController.receivedMessageHandler(MQTTnet.MqttApplicationMessageReceivedEventArgs)">
+            <summary>
+            Este método controla la llegada de mensajes procedentes del servidor o brokerMQTT.
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.DownLinkMessage">
+            <summary>
+            Ver https://www.thethingsnetwork.org/docs/applications/mqtt/api/
+            </summary>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics">
+            <summary>
+            Constantes empleadas para la determinación de los "topic" o colas
+            dentro de MQTT. Más detalles en
+            https://www.thethingsindustries.com/docs/integrations/mqtt/
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_UP">
+            <summary>
+            Mensajes entrantes desde el broker MQTT de TTN
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_DOWN_QUEUED">
+            <summary>
+            Mensajes salientes que han sido encolados en el broker de TTN
+            pero aún no han sido entregados
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_DOWN_SENT">
+            <summary>
+            Mensajes salientes que han sido enviados al dispositivo final
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_DOWN_FAILED">
+            <summary>
+            Mensajes salientes que han fallado al ser enviados al dispositivo final
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_DOWN_ACK">
+            <summary>
+            Mensajes de ACK entrantes después de una operación down-link
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_DOWN_NACK">
+            <summary>
+            Mensajes de ACK entrantes después de una operación down-link
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_JOIN">
+            <summary>
+            Mensaje de entrada de un dispositivo nuevo en la red WSN
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDefinitions.MQTTTopics.TOPIC_ALL">
+            <summary>
+            Wild-card que representa a todos los topic
+            </summary>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector">
+            <summary>
+            Los disectores se ocupan de diseccionar un mensaje 
+            para poder procesarlo extendiendo a la clase MQTTApplicationMessage
+            de MQTTnet
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Up">
+            <summary>
+            Mensajes entrantes desde el broker MQTT de TTN
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Queued">
+            <summary>
+            Mensajes salientes que han sido encolados en el broker de TTN
+            pero aún no han sido entregados
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Sent">
+            <summary>
+            Mensajes salientes que han sido enviados al dispositivo final
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Failed">
+            <summary>
+            Mensajes salientes que han fallado al ser enviados al dispositivo final
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Ack">
+            <summary>
+            Mensajes de ACK entrantes después de una operación down-link
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Nack">
+            <summary>
+            Mensajes de ACK entrantes después de una operación down-link
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Join">
+            <summary>
+            Mensaje de entrada de un dispositivo nuevo en la red WSN
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.EApplicationMessageTopicTypes.Other">
+            <summary>
+            other - analizar el topic original del mensaje.
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.Business.MQTTMessageDissectors.ApplicationMessageReceivedDissector.InitialMessage">
+            <summary>
+            mensaje original 
+            </summary>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.Controllers.MessageBrokerServiceMicroserviceController">
+            <summary>
+            Gestiona el envío y recepción de mensajes entre el API y la red de sensores 
+            desplegada en el campo.
+            </summary>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Controllers.MessageBrokerServiceMicroserviceController.Next">
+            <summary>
+            Recupera el siguiente mensaje disponible sin entregar en el broker
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Controllers.MessageBrokerServiceMicroserviceController.All">
+            <summary>
+            Recupera todos los mensajes en cola desde el servidor  
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Controllers.MessageBrokerServiceMicroserviceController.PostHp(System.String,System.String)">
+            <summary>
+            Envía un mensaje JSON a la red de sensores con alta prioridad
+            </summary>
+            <param name="clientId">el identificador del Nodo</param>
+            <param name="message">mensaje en formato JSON</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:CloudMessageBrokerMicroService.Controllers.MessageBrokerServiceMicroserviceController.PostLP(System.String,System.String)">
+            <summary>
+            Envía un mensaje JSON a la red de sensores con baja prioridad
+            </summary>
+            <param name="clientId">El identificador del Nodo</param>
+            <param name="message">mensaje en formato JSON</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.DataContracts.EPriority">
+            <summary>
+            Define la prioridad de un mensaje.
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.DataContracts.EPriority.Any">
+            <summary>
+            Cualquier priodidad, no debe de usarse para encolar mensajes 
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.DataContracts.EPriority.Low">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CloudMessageBrokerMicroService.DataContracts.EPriority.High">
+            <summary>
+            Mensajes de configuración y de estado del sistema
+            </summary>
+        </member>
+        <member name="T:CloudMessageBrokerMicroService.DataContracts.Message">
+            <summary>
+            Mensaje 
+            </summary>
+        </member>
+        <member name="P:CloudMessageBrokerMicroService.DataContracts.Message.Priority">
+            <summary>
+            Define la prioridad de envio de este mensaje
+            </summary>
+        </member>
+        <member name="P:CloudMessageBrokerMicroService.DataContracts.Message.JsonObject">
+            <summary>
+            Mensaje en formato JSON 
+            </summary>
+        </member>
+        <member name="T:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController">
+            <summary>
+            Estado general del broker de mensajes del API
+            </summary>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController.All">
+            <summary>
+            Obtiene la información del estado general del broker de mensajes
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController.Delete">
+            <summary>
+            Reinicia toda la información de estado del broker
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics">
+            <summary>
+            Contiene estadísticas relativas al tráfico de mensajes entre  
+            servidor, broker y clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.LastReceivedMessage">
+            <summary>
+            último mensaje recibido -hacia clientes o hacia servidor 
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.LastSentMessage">
+            <summary>
+            último mensaje enviado -hacia clientes o hacia servidor 
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.ReceivedMessagesFromServer">
+            <summary>
+            Número total de mensajes recibidos desde el servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.SentMessagesToServer">
+            <summary>
+            Número total de mensajes enviados al servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.ReceivedMessagesFromClients">
+            <summary>
+            Número total de mensajes recibidos desde clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.SentMessagesToClients">
+            <summary>
+            Número total de mensajes enviados a los clientes
+            </summary>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus">
+            <summary>
+            Contiene el estado general del gestor de mensajes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.ClientId">
+            <summary>
+            Client Id empleada para conectar al servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.Server">
+            <summary>
+            URI del servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.IsConnected">
+            <summary>
+            Si es verdadero el broker esta conectado al servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.Processed">
+            <summary>
+            Detalle de los mensajes que se han procesado
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.ToBeProcessed">
+            <summary>
+            Detalle de los mensajes que están en cola pero no se han procesado aún
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.LastOperatonFailures">
+            <summary>
+            Listado con los errores que se han producido en la aplicación
+            </summary>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics">
+            <summary>
+            Contiene estadísticas relativas a los mensajes que están pendientes de
+            ser procesados y están en las colas del broker.
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesFromServer">
+            <summary>
+            En cola recibidos por el servidor para ser procesados.
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesFromClients">
+            <summary>
+            En cola recibidos desde los clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesToServer">
+            <summary>
+            Mensajes en cola de ser enviados al servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesToClients">
+            <summary>
+            Mensajes en cola de ser enviados a los clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.Reason">
+            <summary>
+            Mensaje general de error
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.OperationRequested">
+            <summary>
+            Qué operación se estaba solicitando cuando se ha producido el fallo
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.StackTrace">
+            <summary>
+            Stack de error.
+            </summary>
+        </member>
+    </members>
+</doc>

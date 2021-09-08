@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeviceManagementMicroservice</name>
+    </assembly>
+    <members>
+        <member name="T:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController">
+            <summary>
+            Se ocupa de la configuración de los dispositivos en la red de sensores
+            </summary>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.Find(System.String)">
+            <summary>
+            Obtiene la configuración de un Dispositivo o de todos los dispositivos cuando el parámetro
+            id no es informado.
+            </summary>
+            <param name="id">El identificador de dispositivo, nulo si se desea obtener todo el listado</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado dispositivos</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.Update(System.String,DeviceManagementMicroservice.DataContracts.DeviceSettings)">
+            <summary>
+            Modifica la Configuración para un dispositivo
+            </summary>
+            <param name="id">El identificador de dispositivo </param>
+            <param name="settings"> Configuración. </param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="400">Cuando no se ha indicado correctamente el DeviceId</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdateSampling(System.String,System.UInt16)">
+            <summary>
+            Modifica la configuración en minutos para cada cuanto tiempo se va a realizar el muestreo.
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="samplingPeriod">Establece en minutos cada cuanto tiempo se va a realizar el muestreo. El valor recomendado es 1. </param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="400">Cuando no se ha indicado correctamente el DeviceId</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdateMinimunOperationalBatteryCharge(System.String,System.UInt16)">
+            <summary>
+            Modifica el valor mínimo de carga de batería para que el dispositivo realice muestreos.
+            Una vez alcanzada se realizarán muestreos. Hasta ese momento permanecerá desactivado el sistema de muestreo
+            el valor está acotado entre 0 - 100
+            
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="minimunOperationalBatteryCharge"> Cuando la batería tiene una carga inferior al valor el dispositivo se re alimenta hasta alcanzarla.</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="400">Cuando no se ha indicado correctamente el DeviceId</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdateGeoCordinatesLatitude(System.String,System.Double)">
+            <summary>
+            Modifica la posición geográfica de un dispositivo : Latitud
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="latitude">Nuevas coordenadas del dispositivo</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdateGeoCordinatesLongitude(System.String,System.Double)">
+            <summary>
+            Modifica la posición geográfica de un dispositivo : Longitud
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="longitude">Nuevas coordenadas del dispositivo</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdateGeoCordinatesAltitude(System.String,System.Double)">
+            <summary>
+            Modifica la posición geográfica de un dispositivo : Altitud
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="altitude">Nuevas coordenadas del dispositivo</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdatesolarPanelAxisX(System.String,System.Int16)">
+            <summary>
+            Modifica la posición del panel solar - rotación eje X
+            valor en grados 0-180
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="xAxis">Nuevas coordenadas del dispositivo</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.DeviceManagementMicroserviceController.UpdatesolarPanelAxisY(System.String,System.Int16)">
+            <summary>
+            Modifica la posición del panel solar - rotación eje Y 
+            valor en grados 0-180
+            </summary>
+            <param name="deviceId">El identificador de dispositivo</param>
+            <param name="yAxis">Nuevas coordenadas del dispositivo</param>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="404">Se ha procesado la operación sin errores pero no se han encontrado el dispositivo</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="T:DeviceManagementMicroservice.DataContracts.DeviceSettings">
+            <summary>
+            Configuración completa de un dispositivo.
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.DeviceSettings.Enabled">
+            <summary>
+            permite desactivar el dispositivo
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.DeviceSettings.UbicationDescription">
+            <summary>
+            Descripción de dónde se encuentra el dispositivo ubicado.
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.DeviceSettings.Coordinates">
+            <summary>
+            Algunos dispositivos pueden no tener incorporado un GPS , este campo permite
+            establecer manualmente la posición del dispositivo
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.DeviceSettings.SampligSettings">
+            <summary>
+            Establece la configuración de muestreo del dispositivo.
+            </summary>
+        </member>
+        <member name="T:DeviceManagementMicroservice.DataContracts.GeoCoordinate">
+            <summary>
+            Coordenadas GPS
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.RequestedOperationFailed.Reason">
+            <summary>
+            Mensaje general de error
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.RequestedOperationFailed.OperationRequested">
+            <summary>
+            Qué operación se estaba solicitando cuando se ha producido el fallo
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.RequestedOperationFailed.StackTrace">
+            <summary>
+            Stack de error.
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.SampligSettings.MinimunOperationalBatteryChargePercent">
+            <summary>
+            Cuando la bateria tiene una carga inferior al valor el dispositivo se realimenta hasta alcanzarla.
+            Una vez alcanzada se realizarán muestreos. Hasta ese momento permanecerá desactivado el sistema de muestreo.
+            Valor está acotado entre 0  - 100
+            </summary>
+        </member>
+        <member name="P:DeviceManagementMicroservice.DataContracts.SampligSettings.SamplingPeriod">
+            <summary>
+            Establece en minutos cada cuanto tiempo se va a realizar el muestreo. El valor recomendado es 1.
+            </summary>
+        </member>
+    </members>
+</doc>

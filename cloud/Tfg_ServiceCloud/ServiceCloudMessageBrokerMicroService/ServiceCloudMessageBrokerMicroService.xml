@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CloudMessageBrokerMicroService</name>
+    </assembly>
+    <members>
+        <member name="T:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController">
+            <summary>
+            Estado general del broker de mensajes del API
+            </summary>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController.All">
+            <summary>
+            Obtiene la información del estado general del broker de mensajes
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="M:Tfg_ServiceCloud.Controllers.StatusMessageBrokerMicroserviceController.Delete">
+            <summary>
+            Reinicia toda la información de estado del broker
+            </summary>
+            <response code="200">Se ha procesado la operación sin errores.</response>
+            <response code="500">La operación ha fallado debido a un error interno</response>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics">
+            <summary>
+            Contiene estadísticas relativas al tráfico de mensajes entre  
+            servidor, broker y clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.LastReceivedMessage">
+            <summary>
+            último mensaje recivido -hacia clientes o hacia servidor 
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.LastSentMessage">
+            <summary>
+            último mensaje enviado -hacia clientes o hacia servidor 
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.ReceivedMessagesFromServer">
+            <summary>
+            Número total de mensajes recibidos desde el servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.SentMessagesToServer">
+            <summary>
+            Número total de mensajes enviados al servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.ReceivedMessagesFromClients">
+            <summary>
+            Número total de mensajes recibidos desde clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MessagesStatistics.SentMessagesToClients">
+            <summary>
+            Número total de mensajes enviados a los clientes
+            </summary>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus">
+            <summary>
+            Contiene el estado general del gestor de mensajes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.ClientId">
+            <summary>
+            Client Id empleada para conectar al servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.Server">
+            <summary>
+            URI del servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.IsConnected">
+            <summary>
+            Si es verdadero el broker esta conectado al servidor MQTT
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.Processed">
+            <summary>
+            Detalle de los mensajes que se han procesado
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.ToBeProcessed">
+            <summary>
+            Detalle de los mensajes que estan en cola pero no se han procesado aún
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.MesssageBrokerStatus.LastOperatonFailures">
+            <summary>
+            Listado con los errores que se han producido en la aplicación
+            </summary>
+        </member>
+        <member name="T:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics">
+            <summary>
+            Contiene estadísticas relativas a los mensajes que estan pendientes de
+            ser procesados y estan en las colas del broker.
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesFromServer">
+            <summary>
+            En cola recividos por el servidor para ser procesados.
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesFromClients">
+            <summary>
+            En cola recividos desde los clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesToServer">
+            <summary>
+            Mensajes en cola de ser enviados al servidor
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.QueueMessagesStatistics.QueuedMessagesToClients">
+            <summary>
+            Mensajes en cola de ser enviados a los clientes
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.Reason">
+            <summary>
+            Mensaje general de error
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.OperationRequested">
+            <summary>
+            Qué operación se estaba solicitando cuando se ha producido el fallo
+            </summary>
+        </member>
+        <member name="P:ServiceCloudMessageBrokerMicroService.DataContracts.RequestedOperationFailed.StackTrace">
+            <summary>
+            Stack de error.
+            </summary>
+        </member>
+    </members>
+</doc>
